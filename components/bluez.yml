@@ -3,3 +3,5 @@ packages:
 - bluez
 rules:
 - service_bluetooth_disabled
+- service_bluetooth_removed
+

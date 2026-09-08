@@ -1,0 +1,35 @@
+documentation_complete: true
+
+title: 'Desinstalar el paquete de Bluetooth (bluez)'
+
+description: |-
+    El paquete `bluez` contiene el demonio central de Bluetooth y las utilidades 
+    necesarias para los dispositivos Bluetooth. Si el sistema no requiere el uso 
+    de dispositivos Bluetooth, este paquete debe ser desinstalado.
+
+rationale: |-
+    Eliminar los paquetes innecesarios reduce la superficie de ataque del sistema. 
+    En entornos de servidores, el Bluetooth no suele tener casos de uso legítimos 
+    y desinstalar el software garantiza que el servicio no pueda habilitarse accidentalmente.
+
+severity: medium
+
+identifiers:
+    cce: CCE-80830-3  # ID de referencia (puede variar según el perfil oficial)
+
+references:
+    nist: CM-7(a),CM-7(b),CM-6(a)
+    srg: SRG-OS-000095-GPOS-00049
+
+ocil_clause: 'el paquete bluez está instalado'
+
+ocil: |-
+    Para verificar que el paquete de Bluetooth ha sido eliminado, ejecute el siguiente comando:
+    $ rpm -q bluez
+    La salida debería indicar que el paquete no está instalado (package bluez is not installed).
+
+# La plantilla mágica que genera todo el código de comprobación y remediación
+template:
+    name: package_removed
+    vars:
+        pkgname: bluez
