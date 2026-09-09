@@ -34,7 +34,7 @@
   <!-- Define corresponding variable state (the requirement) for the variable object -->
   <!-- The check should PASS if retrieved last PASS_MAX_DAYS value is less than or equal to the requirement -->
   <ind:variable_state id="state_last_pass_max_days_instance_value" version="1">
-    <ind:value operation="less than or equal" var_ref="var_accounts_maximum_age_login_defs" datatype="int" var_check="at least one" />
+    <ind:value operation="equals" var_ref="var_accounts_maximum_age_login_defs" datatype="int" var_check="at least one" />
   </ind:variable_state>
 
   <external_variable comment="Maximum password age" datatype="int" id="var_accounts_maximum_age_login_defs" version="1" />

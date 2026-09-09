@@ -16,10 +16,19 @@ selections:
     - mount_option_tmp_noexec
 
     # --- Permisos de Arranque (GRUB2) ---
-    - file_permissions_boot_grub2
-    - file_owner_boot_grub2
-    - file_groupowner_boot_grub2
-    - file_permissions_efi_grub2_cfg
+    #- file_permissions_boot_grub2_cfg
+    #- file_owner_boot_grub2_cfg
+    #- file_groupowner_boot_grub2_cfg
+    - file_groupowner_grub2_cfg
+    - file_groupowner_user_cfg
+    - file_groupowner_user_cfg_grubenv
+    - file_owner_grub2_cfg
+    - file_owner_user_cfg
+    - file_owner_user_cfg_grubenv
+    - file_permissions_grub2_cfg
+    - file_permissions_user_cfg
+    - file_permissions_user_cfg_grubenv
+    - file_permissions_efi_grub2_cfg_rsi
     - file_groupowner_efi_grub2_cfg
     - file_owner_efi_grub2_cfg
 
@@ -28,6 +37,7 @@ selections:
     - sysctl_net_ipv4_tcp_syncookies
     - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
     - sysctl_net_ipv4_conf_all_secure_redirects
+    - sysctl_net_ipv4_conf_default_secure_redirects
 
     # --- Mensaje de Bienvenida ---
     - file_permissions_etc_motd
@@ -36,6 +46,7 @@ selections:
 
     # --- Servicios ---
     - service_bluetooth_disabled
+    - service_bluetooth_removed
 
     # --- Tareas Programadas (Cron) ---
     - file_permissions_crontab
@@ -53,11 +64,13 @@ selections:
 
     # --- Logs y Auditoría ---
     - rsyslog_remote_loghost
-    - rsyslog_remote_tls
-    - rsyslog_remote_tls_cacert
+    #- rsyslog_remote_tls  ---- esta regla no interfiere en el bastionado pedido ----
+    #- rsyslog_remote_tls_cacert  --- esta regla no interfiere en el bastionado pedido ----
 
     # --- Gestión de Cuentas y Usuarios ---
     - accounts_maximum_age_login_defs
+    - var_accounts_maximum_age_login_defs=90
+    # --- Reglas que a la espera de autorización dentro de Gestion de Cuentas y usuarios ----
     - accounts_user_interactive_home_directory_exists
     - file_ownership_home_directories
     - file_permissions_home_directories
