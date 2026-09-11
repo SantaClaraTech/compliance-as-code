@@ -70,10 +70,16 @@ selections:
     # --- Gestión de Cuentas y Usuarios ---
     - accounts_maximum_age_login_defs
     - var_accounts_maximum_age_login_defs=90
-    # --- Reglas que a la espera de autorización dentro de Gestion de Cuentas y usuarios ----
     - accounts_user_interactive_home_directory_exists
     - file_ownership_home_directories
     - file_permissions_home_directories
     - accounts_user_dot_group_ownership
     - accounts_user_dot_no_world_writable_programs
     - accounts_user_dot_user_ownership
+    # ------ultimas añadidas recientemente--------
+    - no_rhost_files
+    - no_forward_files
+    - accounts_users_netrc_file_permissions
+    - file_permission_user_bash_history
+    - file_permission_all_dot
+
