@@ -1,0 +1,19 @@
+documentation_complete: true
+
+title: 'Set Lockout Time for Failed Password Attempts (Custom PAM Safe)'
+
+description: |-
+    Configures faillock unlock_time in /etc/security/faillock.conf and removes it from PAM files to respect custom setups.
+
+rationale: |-
+    Prevents brute-force attacks by locking accounts for a specific time without breaking manual PAM configs.
+
+severity: medium
+
+identifiers:
+    cce@rhel8: CCE-80670-3
+
+ocil_clause: 'unlock_time is not properly set in faillock.conf or remains in PAM files'
+
+ocil: |-
+    Check that unlock_time is in /etc/security/faillock.conf and absent from PAM files.

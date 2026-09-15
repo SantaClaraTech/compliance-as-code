@@ -62,6 +62,7 @@ rules:
 - accounts_passwords_pam_faildelay_delay
 - accounts_passwords_pam_faillock_audit
 - accounts_passwords_pam_faillock_deny
+- custom_accounts_passwords_pam_faillock_deny  
 - accounts_passwords_pam_faillock_deny_root
 - accounts_passwords_pam_faillock_dir
 - accounts_passwords_pam_faillock_even_deny_root_or_root_unlock_time
@@ -70,6 +71,7 @@ rules:
 - accounts_passwords_pam_faillock_silent
 - accounts_passwords_pam_faillock_root_unlock_time
 - accounts_passwords_pam_faillock_unlock_time
+- custom_accounts_passwords_pam_faillock_unlock_time  
 - accounts_passwords_pam_faillock_unlock_time_with_zero
 - accounts_passwords_pam_faillock_enabled
 - accounts_passwords_pam_tally2

@@ -11,7 +11,7 @@ checktext: |-
 
     $ grep 'unlock_time =' /etc/security/faillock.conf
 
-    unlock_time = 0
+    unlock_time = 900
 
     If the "unlock_time" option is not set to "0", the line is missing, or commented out, this is a finding.
 
@@ -22,4 +22,4 @@ fixtext: |-
 
     Then edit the "/etc/security/faillock.conf" file as follows:
 
-    unlock_time = 0
+    unlock_time = 900

@@ -10,7 +10,7 @@ description: |-
 
 selections:
     # --- Particiones y Montajes ---
-    - partition_for_tmp
+    #- partition_for_tmp
     - mount_option_tmp_nodev
     - mount_option_tmp_nosuid
     - mount_option_tmp_noexec
@@ -44,9 +44,9 @@ selections:
     - file_groupowner_etc_motd
     - file_owner_etc_motd
 
-    # --- Servicios ---
-    - service_bluetooth_disabled
-    - service_bluetooth_removed
+    # --- Servicios quitados---
+    #- service_bluetooth_disabled
+    #- service_bluetooth_removed
 
     # --- Tareas Programadas (Cron) ---
     - file_permissions_crontab
@@ -82,4 +82,34 @@ selections:
     - accounts_users_netrc_file_permissions
     - file_permission_user_bash_history
     - file_permission_all_dot
-
+    # ------ultimas añadidas recientemente nuevas reglas nuevo excel --------
+    - accounts_password_pam_minclass
+    - var_password_pam_minclass=4
+    - accounts_password_pam_dcredit
+    - var_password_pam_dcredit=1
+    - accounts_password_pam_lcredit
+    - var_password_pam_lcredit=1
+    - accounts_password_pam_ocredit
+    - var_password_pam_ocredit=1
+    - accounts_password_pam_ucredit
+    - var_password_pam_ucredit=1
+    - accounts_password_all_shadowed
+    - accounts_tmout
+    - var_accounts_tmout=15_min
+    #- account_password_pam_faillock_password_auth
+    #- account_password_pam_faillock_system_auth
+    #- accounts_passwords_pam_faillock_deny
+    - custom_accounts_passwords_pam_faillock_deny
+    - var_accounts_passwords_pam_faillock_deny=5
+    - accounts_password_pam_enforce_root
+    #- accounts_passwords_pam_faillock_unlock_time
+    - custom_accounts_passwords_pam_faillock_unlock_time
+    - var_accounts_passwords_pam_faillock_unlock_time=900
+    - sysctl_net_ipv4_conf_all_log_martians
+    - sysctl_net_ipv4_conf_default_log_martians
+    - accounts_password_pam_minlen
+    - var_password_pam_minlen=14
+    - file_ownership_sshd_private_key
+    - file_groupownership_sshd_private_key
+    - file_permissions_sshd_private_key
+    

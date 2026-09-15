@@ -1,6 +1,6 @@
 {{% set system_configuration_using_etc_bashrc_expected = false -%}}
 
-{{% if product in ["ol7"] -%}}
+{{% if product in ["ol7", "rhel8"] -%}}
   {{% set system_configuration_using_etc_bashrc_expected = true %}}
 {{%- endif -%}}
 <def-group>
@@ -8,7 +8,7 @@
     {{{ oval_metadata("Checks interactive shell timeout", rule_title=rule_title) }}}
     <criteria operator="AND">
       {{% if "ubuntu" in product %}}
-      <criterion comment="TMOUT value in /etc/bash.bashrc &lt;= var_accounts_tmout" test_ref="test_etc_bashrc_tmout" />
+      <criterion comment="TMOUT value in /etc/bashrc &lt;= var_accounts_tmout" test_ref="test_etc_bashrc_tmout" />
       {{% endif %}}
       <criterion comment="TMOUT value in /etc/profile &lt;= var_accounts_tmout" test_ref="test_etc_profile_tmout" />
       <criterion comment="TMOUT value in /etc/profile.d/*.sh &lt;= var_accounts_tmout" test_ref="test_etc_profiled_tmout" />
