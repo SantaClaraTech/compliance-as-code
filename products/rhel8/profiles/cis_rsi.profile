@@ -107,7 +107,8 @@ selections:
     - var_accounts_passwords_pam_faillock_unlock_time=900
     - sysctl_net_ipv4_conf_all_log_martians
     - sysctl_net_ipv4_conf_default_log_martians
-    - accounts_password_pam_minlen
+    #- accounts_password_pam_minlen
+    - custom_accounts_password_pam_minlen
     - var_password_pam_minlen=14
     - file_ownership_sshd_private_key
     - file_groupownership_sshd_private_key
