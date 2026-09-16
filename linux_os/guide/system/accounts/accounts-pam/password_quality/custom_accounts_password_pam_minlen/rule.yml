@@ -1,0 +1,19 @@
+documentation_complete: true
+
+title: 'Set Minimum Password Length (Custom PAM Safe)'
+
+description: |-
+    Configures minlen in /etc/security/pwquality.conf and removes it from PAM files to respect custom setups.
+
+rationale: |-
+    Ensures passwords have a minimum length to protect against brute-force attacks without breaking manual PAM configs.
+
+severity: medium
+
+identifiers:
+    cce@rhel8: CCE-80653-9
+
+ocil_clause: 'minlen is not properly set in pwquality.conf or remains in PAM files'
+
+ocil: |-
+    Check that minlen is in /etc/security/pwquality.conf and absent from PAM files.

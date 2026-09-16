@@ -9,7 +9,7 @@ checktext: |-
 
     $ grep 'deny =' /etc/security/faillock.conf
 
-    deny = 3
+    deny = 5
 
     If the "deny" option is not set to "3" or less (but not "0"), is missing or commented out, this is a finding.
 
@@ -18,4 +18,4 @@ fixtext: |-
 
     Add/Modify the "/etc/security/faillock.conf" file to match the following line:
 
-    deny = 3
+    deny = 5

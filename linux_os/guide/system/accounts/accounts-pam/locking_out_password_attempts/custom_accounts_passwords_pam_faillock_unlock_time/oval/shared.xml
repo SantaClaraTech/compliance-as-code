@@ -1,0 +1,36 @@
+<def-group>
+  <definition class="compliance" id="custom_accounts_passwords_pam_faillock_unlock_time" version="1">
+    {{{ oval_metadata("Check unlock_time in faillock.conf and absence in PAM files") }}}
+    <criteria operator="AND">
+      <criterion test_ref="test_custom_faillock_unlock_time_conf" comment="Check unlock_time in faillock.conf"/>
+      <criterion test_ref="test_custom_faillock_unlock_time_pam_absent" comment="Check unlock_time absent in PAM files"/>
+    </criteria>
+  </definition>
+
+  <!-- Test 1: Presente en faillock.conf -->
+  <ind:textfilecontent54_test check="all" check_existence="all_exist" id="test_custom_faillock_unlock_time_conf" version="1" comment="unlock_time in faillock.conf">
+    <ind:object object_ref="object_custom_faillock_unlock_time_conf" />
+    <ind:state state_ref="state_custom_faillock_unlock_time_conf" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_custom_faillock_unlock_time_conf" version="1">
+    <ind:filepath>/etc/security/faillock.conf</ind:filepath>
+    <ind:pattern operation="pattern match">^[\s]*unlock_time[\s]*=[\s]*(\d+)</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_state id="state_custom_faillock_unlock_time_conf" version="1">
+    <ind:subexpression datatype="int" operation="greater than or equal" var_ref="var_accounts_passwords_pam_faillock_unlock_time" />
+  </ind:textfilecontent54_state>
+
+  <!-- Test 2: Ausente en archivos PAM -->
+  <ind:textfilecontent54_test check="all" check_existence="none_exist" id="test_custom_faillock_unlock_time_pam_absent" version="1" comment="unlock_time absent in PAM">
+    <ind:object object_ref="object_custom_faillock_unlock_time_pam_absent" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_custom_faillock_unlock_time_pam_absent" version="1">
+    <ind:filepath operation="pattern match">^/etc/pam\.d/(system-auth|password-auth)$</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*auth\s+.*pam_faillock\.so.*\s+unlock_time=</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+</def-group>

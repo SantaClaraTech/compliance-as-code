@@ -39,6 +39,7 @@ rules:
 - accounts_password_all_shadowed_sha512
 - accounts_password_last_change_is_in_past
 - accounts_password_minlen_login_defs
+- custom_accounts_password_pam_minlen
 - accounts_password_pam_modules_in_authselect_profile
 - accounts_password_pam_pwhistory_enabled
 - accounts_password_pam_pwhistory_enforce_root
@@ -62,6 +63,7 @@ rules:
 - accounts_passwords_pam_faildelay_delay
 - accounts_passwords_pam_faillock_audit
 - accounts_passwords_pam_faillock_deny
+- custom_accounts_passwords_pam_faillock_deny  
 - accounts_passwords_pam_faillock_deny_root
 - accounts_passwords_pam_faillock_dir
 - accounts_passwords_pam_faillock_even_deny_root_or_root_unlock_time
@@ -70,6 +72,7 @@ rules:
 - accounts_passwords_pam_faillock_silent
 - accounts_passwords_pam_faillock_root_unlock_time
 - accounts_passwords_pam_faillock_unlock_time
+- custom_accounts_passwords_pam_faillock_unlock_time  
 - accounts_passwords_pam_faillock_unlock_time_with_zero
 - accounts_passwords_pam_faillock_enabled
 - accounts_passwords_pam_tally2

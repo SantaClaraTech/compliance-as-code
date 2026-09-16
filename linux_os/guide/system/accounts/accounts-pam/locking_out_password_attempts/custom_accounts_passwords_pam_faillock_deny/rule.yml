@@ -1,0 +1,19 @@
+documentation_complete: true
+
+title: 'Lock Accounts After Failed Password Attempts (Custom PAM Safe)'
+
+description: |-
+    Configures faillock deny in /etc/security/faillock.conf and removes it from PAM files to respect custom setups.
+
+rationale: |-
+    Prevents brute-force attacks by locking accounts after failed attempts without breaking manual PAM configs.
+
+severity: medium
+
+identifiers:
+    cce@rhel8: CCE-80667-9
+
+ocil_clause: 'deny is not properly set in faillock.conf or remains in PAM files'
+
+ocil: |-
+    Check that deny is in /etc/security/faillock.conf and absent from PAM files.
