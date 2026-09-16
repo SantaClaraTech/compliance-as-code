@@ -93,6 +93,7 @@ selections:
     - var_password_pam_ocredit=1
     - accounts_password_pam_ucredit
     - var_password_pam_ucredit=1
+    - custom_accounts_password_pam_clean_pwquality_args
     - accounts_password_all_shadowed
     - accounts_tmout
     - var_accounts_tmout=15_min
