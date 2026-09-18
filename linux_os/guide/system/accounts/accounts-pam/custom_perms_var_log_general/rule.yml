@@ -1,0 +1,13 @@
+documentation_complete: true
+title: 'Verify permissions of general log files (0640)'
+description: 'Set permissions to 0640 for all other log files.'
+rationale: 'System logs should be restricted to 0640 to prevent unauthorized access.'
+severity: medium
+template:
+    name: file_permissions
+    vars:
+        filepath: /var/log/
+        file_regex: '.*'
+        recursive: 'true'
+        filemode: '0640'
+        excluded_files: ['^[bw]tmp.*$', '^lastlog.*$', '^[sS]ssd$', '^gdm3?$']

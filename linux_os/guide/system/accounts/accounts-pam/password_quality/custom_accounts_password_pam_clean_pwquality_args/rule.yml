@@ -1,0 +1,19 @@
+documentation_complete: true
+
+title: 'Clean Legacy pwquality Arguments from PAM Files'
+
+description: |-
+    Removes legacy pam_pwquality.so arguments (minclass, dcredit, lcredit, ocredit, ucredit) from PAM files to ensure compliance with central /etc/security/pwquality.conf management.
+
+rationale: |-
+    Centralizing password quality configuration in pwquality.conf prevents conflicts and simplifies auditing.
+
+severity: low
+
+identifiers:
+    cce@rhel8: CCE-80654-7
+
+ocil_clause: 'legacy arguments remain in PAM files'
+
+ocil: |-
+    Check that minclass, dcredit, lcredit, ocredit, and ucredit are absent from PAM files.

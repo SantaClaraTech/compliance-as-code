@@ -1,0 +1,24 @@
+documentation_complete: true
+
+title: 'Use Only Strong Ciphers in All Config Locations'
+
+description: |-
+    Limit the ciphers to strong algorithms compliant with RSI policy.
+    This rule explicitly checks and modifies the configuration in three locations:
+    1. <tt>/etc/ssh/sshd_config</tt>
+    2. <tt>/etc/ssh/sshd_config.d/</tt>
+    3. <tt>/etc/crypto-policies/back-ends/opensshserver.config</tt>
+
+rationale: |-
+    Ensures that only approved CTR and GCM ciphers are used across all possible
+    configuration files to satisfy strict audit scripts.
+
+severity: medium
+
+ocil_clause: 'ciphers are not configured correctly in all files'
+
+ocil: |-
+    Verify the effective configuration across all files:
+    <pre>$ sudo grep -i ciphers /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf /etc/crypto-policies/back-ends/opensshserver.config</pre>
+    All outputs must contain exactly:
+    aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr

@@ -1,0 +1,21 @@
+documentation_complete: true
+
+title: 'All Interactive User and Root Home Directories Must Be Owned By The Primary User'
+
+description: |-
+    This rule ensures every home directory related to an interactive user,
+    as well as the root user, is owned by its respective user.
+
+rationale: |-
+    If a user (including root) does not own their home directory, unauthorized
+    users could access or modify critical files.
+
+severity: medium
+
+identifiers:
+    cce@rhel8: CCE-86131-0
+
+ocil_clause: 'the user ownership is incorrect'
+
+ocil: |-
+    Check that /root is owned by root, and all interactive users own their home directories.

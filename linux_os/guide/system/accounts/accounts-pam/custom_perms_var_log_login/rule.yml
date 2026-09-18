@@ -1,0 +1,12 @@
+documentation_complete: true
+title: 'Verify permissions of login log files (0664)'
+description: 'Set permissions to 0664 for lastlog, wtmp, and btmp.'
+rationale: 'Login records require 0664 to allow non-privileged users to read connection history.'
+severity: medium
+template:
+    name: file_permissions
+    vars:
+        filepath: /var/log/
+        file_regex: '^([bw]tmp.*|lastlog.*)$'
+        recursive: 'true'
+        filemode: '0664'
