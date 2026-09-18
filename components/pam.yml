@@ -93,6 +93,7 @@ rules:
 - authconfig_config_files_symlinks
 - banner_etc_gdm_banner
 - banner_etc_issue
+- custom_banner_etc_issue_net
 - banner_etc_issue_cis
 - banner_etc_issue_net
 - banner_etc_issue_net_cis
@@ -126,6 +127,9 @@ rules:
 - file_owner_etc_issue_net
 - file_owner_etc_motd
 - file_ownership_home_directories
+- custom_file_ownership_home_directories
+- custom_file_groupownership_home_directories
+- custom_file_permissions_root_home
 - file_ownership_lastlog
 - file_permissions_etc_issue
 - file_permissions_etc_issue_net
@@ -157,6 +161,9 @@ rules:
 - package_pam_modules_installed
 - package_pam_pwquality_installed
 - package_pam_runtime_installed
+- custom_perms_var_log_login
+- custom_perms_var_log_apps
+- custom_perms_var_log_general
 - package_pam_sss_installed
 - package_pcsc-lite_installed
 - package_screen_installed
@@ -189,5 +196,6 @@ rules:
 - use_pam_wheel_group_for_su
 - verify_use_mappers
 - vlock_installed
+- custom_sshd_ciphers
 templates:
 - pam_options

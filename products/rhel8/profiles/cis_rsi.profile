@@ -71,7 +71,11 @@ selections:
     - accounts_maximum_age_login_defs
     - var_accounts_maximum_age_login_defs=90
     - accounts_user_interactive_home_directory_exists
-    - file_ownership_home_directories
+    - custom_file_groupownership_home_directories
+    - custom_file_permissions_root_home
+    #- file_ownership_home_directories
+    - no_shelllogin_for_systemaccounts
+    - custom_file_ownership_home_directories
     - file_permissions_home_directories
     - accounts_user_dot_group_ownership
     - accounts_user_dot_no_world_writable_programs
@@ -114,4 +118,6 @@ selections:
     - file_ownership_sshd_private_key
     - file_groupownership_sshd_private_key
     - file_permissions_sshd_private_key
-    
+    # ---------------------------Pruebas con la regla Ensure system accounts are secured ------------------------------- 
+    - no_password_auth_for_systemaccounts 
+    #- accounts_no_uid_except_zero 

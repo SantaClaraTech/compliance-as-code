@@ -1,0 +1,29 @@
+<def-group>
+  <definition class="compliance" id="custom_file_permissions_root_home" version="1">
+    {{{ oval_metadata("The root home directory /root must have mode 0750 or less permissive") }}}
+    <criteria>
+      <criterion test_ref="test_custom_file_permissions_root_home" comment="Check /root permissions"/>
+    </criteria>
+  </definition>
+
+  <unix:file_object id="object_custom_file_permissions_root_home" version="1">
+    <unix:path>/root</unix:path>
+    <unix:filename xsi:nil="true" />
+  </unix:file_object>
+
+  <unix:file_state id="state_custom_file_permissions_root_home" version="1" operator='AND'>
+    <unix:type operation="equals">directory</unix:type>
+    <unix:suid datatype="boolean">false</unix:suid>
+    <unix:sgid datatype="boolean">false</unix:sgid>
+    <unix:sticky datatype="boolean">false</unix:sticky>
+    <unix:gwrite datatype="boolean">false</unix:gwrite>
+    <unix:oread datatype="boolean">false</unix:oread>
+    <unix:owrite datatype="boolean">false</unix:owrite>
+    <unix:oexec datatype="boolean">false</unix:oexec>
+  </unix:file_state>
+
+  <unix:file_test id="test_custom_file_permissions_root_home" check="all" check_existence="all_exist" version="1" comment="/root has proper permissions">
+    <unix:object object_ref="object_custom_file_permissions_root_home"/>
+    <unix:state state_ref="state_custom_file_permissions_root_home"/>
+  </unix:file_test>
+</def-group>

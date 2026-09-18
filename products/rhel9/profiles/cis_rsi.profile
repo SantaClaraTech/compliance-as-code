@@ -17,12 +17,18 @@ selections:
     - sysctl_net_ipv4_tcp_syncookies
     - sysctl_net_ipv4_icmp_ignore_bogus_error_responses
     - sysctl_net_ipv4_conf_all_secure_redirects
+    - sysctl_net_ipv4_conf_default_secure_redirects
     - sysctl_net_ipv4_conf_default_log_martians
     - sysctl_net_ipv4_conf_all_log_martians
 
     # SSH y Banners
-    - sshd_use_strong_ciphers
-    - banner_etc_issue_net
+    #- sshd_use_strong_ciphers
+    - custom_sshd_ciphers
+    #- harden_sshd_ciphers_openssh_conf_crypto_policy
+    - configure_crypto_policy
+    - var_system_crypto_policy=fips
+    #- banner_etc_issue_net
+    - custom_banner_etc_issue_net
     - file_ownership_sshd_private_key
     - file_groupownership_sshd_private_key
     - file_permissions_sshd_private_key
@@ -72,14 +78,20 @@ selections:
     # Logs y Auditoría
     - rsyslog_logging_configured
     - rsyslog_remote_loghost
-    - file_permissions_var_log
+    #- file_permissions_var_log
+    - custom_perms_var_log_login
+    - custom_perms_var_log_apps
+    - custom_perms_var_log_general
     - file_owner_var_log
     - file_groupowner_var_log
 
     # Permisos Generales y Directorios Home
     - no_files_or_dirs_ungroupowned
     - no_files_or_dirs_unowned_by_user
-    - file_ownership_home_directories
+    #- file_ownership_home_directories
+    - custom_file_ownership_home_directories
+    - custom_file_groupownership_home_directories
+    - custom_file_permissions_root_home
     - file_permissions_home_directories
     - accounts_user_interactive_home_directory_exists
-
+    - no_shelllogin_for_systemaccounts

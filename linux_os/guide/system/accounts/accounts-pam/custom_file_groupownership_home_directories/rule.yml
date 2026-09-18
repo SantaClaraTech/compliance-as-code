@@ -1,0 +1,21 @@
+documentation_complete: true
+
+title: 'All Interactive User and Root Home Directories Must Be Group-Owned By The Primary User'
+
+description: |-
+    This rule ensures every home directory related to an interactive user,
+    as well as the root user, is group-owned by its respective user's primary group.
+
+rationale: |-
+    If a user (including root) does not group-own their home directory, unauthorized
+    users could access or modify critical files.
+
+severity: medium
+
+identifiers:
+    cce@rhel8: CCE-86130-2
+
+ocil_clause: 'the group ownership is incorrect'
+
+ocil: |-
+    Check that /root is group-owned by root (gid 0), and all interactive users group-own their home directories.

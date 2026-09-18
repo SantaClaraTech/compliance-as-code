@@ -1,0 +1,7 @@
+documentation_complete: true
+title: 'Root Home Directory Must Have mode 0750 Or Less Permissive'
+description: 'Change the mode of root home directory to 0750.'
+rationale: 'Excessive permissions on the root home directory may allow unauthorized access.'
+severity: medium
+ocil_clause: 'it is more permissive'
+ocil: 'Check that /root has mode 0750 or less.'

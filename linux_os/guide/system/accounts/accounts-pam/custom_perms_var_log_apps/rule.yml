@@ -1,0 +1,12 @@
+documentation_complete: true
+title: 'Verify permissions of SSSD and GDM log files (0660)'
+description: 'Set permissions to 0660 for SSSD and GDM logs.'
+rationale: 'Specific daemons require 0660 to write correctly to their logs.'
+severity: medium
+template:
+    name: file_permissions
+    vars:
+        filepath: /var/log/
+        file_regex: '^([sS]ssd*|gdm3?)$'
+        recursive: 'true'
+        filemode: '0660'

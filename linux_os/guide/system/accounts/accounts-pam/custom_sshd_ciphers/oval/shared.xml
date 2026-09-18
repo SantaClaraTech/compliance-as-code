@@ -1,0 +1,52 @@
+<def-group>
+  <definition class="compliance" id="custom_sshd_ciphers" version="1">
+    <metadata>
+      <title>Use Only Strong Ciphers in All Configs</title>
+      <affected family="unix"><platform>multi_platform_all</platform></affected>
+      <description>Check ciphers in sshd_config, drop-ins, and backend</description>
+    </metadata>
+    <criteria operator="AND">
+      <criterion test_ref="test_custom_sshd_ciphers_main" comment="sshd_config check"/>
+      <criterion test_ref="test_custom_sshd_ciphers_dropin" comment="sshd_config.d check"/>
+      <criterion test_ref="test_custom_sshd_ciphers_backend" comment="crypto backend check"/>
+    </criteria>
+  </definition>
+
+  <!-- 1. Check sshd_config -->
+  <ind:textfilecontent54_test id="test_custom_sshd_ciphers_main" check="all" check_existence="all_exist" version="1" comment="Main config">
+    <ind:object object_ref="obj_custom_sshd_ciphers_main" />
+    <ind:state state_ref="state_custom_sshd_ciphers_exact" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_custom_sshd_ciphers_main" version="1">
+    <ind:filepath>/etc/ssh/sshd_config</ind:filepath>
+    <ind:pattern operation="pattern match">^[ \t]*(?i)Ciphers(?-i)[ \t]+(.+)$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- 2. Check sshd_config.d -->
+  <ind:textfilecontent54_test id="test_custom_sshd_ciphers_dropin" check="all" check_existence="all_exist" version="1" comment="Drop-in config">
+    <ind:object object_ref="obj_custom_sshd_ciphers_dropin" />
+    <ind:state state_ref="state_custom_sshd_ciphers_exact" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_custom_sshd_ciphers_dropin" version="1">
+    <ind:filepath>/etc/ssh/sshd_config.d/01-custom-ciphers.conf</ind:filepath>
+    <ind:pattern operation="pattern match">^[ \t]*(?i)Ciphers(?-i)[ \t]+(.+)$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- 3. Check crypto-policies backend -->
+  <ind:textfilecontent54_test id="test_custom_sshd_ciphers_backend" check="all" check_existence="all_exist" version="1" comment="Backend config">
+    <ind:object object_ref="obj_custom_sshd_ciphers_backend" />
+    <ind:state state_ref="state_custom_sshd_ciphers_exact" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_custom_sshd_ciphers_backend" version="1">
+    <ind:filepath>/etc/crypto-policies/back-ends/opensshserver.config</ind:filepath>
+    <ind:pattern operation="pattern match">^[ \t]*(?i)Ciphers(?-i)[ \t]+(.+)$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- Valor exacto esperado en los tres archivos -->
+  <ind:textfilecontent54_state id="state_custom_sshd_ciphers_exact" version="1">
+    <ind:subexpression datatype="string" operation="equals">aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr</ind:subexpression>
+  </ind:textfilecontent54_state>
+</def-group>

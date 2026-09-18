@@ -1,0 +1,7 @@
+documentation_complete: true
+title: 'Modify the System Login Banner for Remote Connections (RSI Custom)'
+description: 'Configures /etc/issue.net with the exact RSI corporate warning banner.'
+rationale: 'Displaying the official RSI policy banner ensures legal compliance.'
+severity: medium
+ocil_clause: 'the RSI banner is not present'
+ocil: 'Check that /etc/issue.net contains the corporate RSI warning.'
