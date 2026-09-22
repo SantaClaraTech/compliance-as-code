@@ -1,0 +1,20 @@
+documentation_complete: true
+
+title: 'Ensure exhaustive rsyslog logging is configured (Custom)'
+
+description: |-
+    To satisfy strict logging requirements, a custom drop-in file is deployed
+    at <tt>/etc/rsyslog.d/99-cis-custom-logging.conf</tt> containing all
+    necessary facility and priority combinations.
+
+rationale: |-
+    A great deal of important security-related information is sent via
+    rsyslog. Ensuring a standardized drop-in file prevents configuration drift.
+
+severity: medium
+
+ocil_clause: 'the required custom logging drop-in is missing'
+
+ocil: |-
+    Verify that the custom logging configuration exists:
+      <pre>$ cat /etc/rsyslog.d/99-cis-custom-logging.conf</pre>

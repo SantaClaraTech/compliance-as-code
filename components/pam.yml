@@ -171,6 +171,7 @@ rules:
 - passwd_system-auth_substack
 - policy_temp_passwords_immediate_change
 - prevent_direct_root_logins
+- custom_rsyslog_logging_configured
 - require_singleuser_auth
 - restrict_serial_port_logins
 - root_path_all_dirs
@@ -197,5 +198,8 @@ rules:
 - verify_use_mappers
 - vlock_installed
 - custom_sshd_ciphers
+- custom_no_files_or_dirs_ungroupowned
+- custom_no_files_or_dirs_unowned
+- custom_crypto_policy_no_chacha
 templates:
 - pam_options

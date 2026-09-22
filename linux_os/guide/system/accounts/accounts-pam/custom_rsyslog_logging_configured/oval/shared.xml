@@ -1,0 +1,63 @@
+<def-group>
+  <definition class="compliance" id="{{{ rule_id }}}" version="1">
+    {{{ oval_metadata("Ensure custom CIS rsyslog drop-in contains exact required configurations") }}}
+    <criteria operator="AND">
+      <criterion comment="mail.err" test_ref="test_rsyslog_mail_err" />
+      <criterion comment="local6,local7" test_ref="test_rsyslog_local67" />
+      <criterion comment="auth,authpriv" test_ref="test_rsyslog_auth" />
+      <criterion comment="local2,local3" test_ref="test_rsyslog_local23" />
+      <criterion comment="warning,err" test_ref="test_rsyslog_warn_err" />
+      <criterion comment="emerg" test_ref="test_rsyslog_emerg" />
+      <criterion comment="mail.info" test_ref="test_rsyslog_mail_info" />
+      <criterion comment="mail.all" test_ref="test_rsyslog_mail_all" />
+      <criterion comment="crit" test_ref="test_rsyslog_crit" />
+      <criterion comment="cron" test_ref="test_rsyslog_cron" />
+      <criterion comment="mail.warn" test_ref="test_rsyslog_mail_warn" />
+      <criterion comment="messages" test_ref="test_rsyslog_messages" />
+      <criterion comment="local4,local5" test_ref="test_rsyslog_local45" />
+      <criterion comment="local0,local1" test_ref="test_rsyslog_local01" />
+    </criteria>
+  </definition>
+
+  <ind:textfilecontent54_test id="test_rsyslog_mail_err" check="all" check_existence="all_exist" version="1" comment="1"><ind:object object_ref="obj_rsyslog_mail_err" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_mail_err" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*mail\.err[\s]+/var/log/mail\.err[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_local67" check="all" check_existence="all_exist" version="1" comment="2"><ind:object object_ref="obj_rsyslog_local67" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_local67" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*local6,local7\.\*[\s]+-/var/log/localmessages[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_auth" check="all" check_existence="all_exist" version="1" comment="3"><ind:object object_ref="obj_rsyslog_auth" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_auth" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*auth,authpriv\.\*[\s]+/var/log/secure[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_local23" check="all" check_existence="all_exist" version="1" comment="4"><ind:object object_ref="obj_rsyslog_local23" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_local23" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*local2,local3\.\*[\s]+-/var/log/localmessages[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_warn_err" check="all" check_existence="all_exist" version="1" comment="5"><ind:object object_ref="obj_rsyslog_warn_err" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_warn_err" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*\*\.=warning;\*\.=err[\s]+-/var/log/warn[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_emerg" check="all" check_existence="all_exist" version="1" comment="6"><ind:object object_ref="obj_rsyslog_emerg" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_emerg" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*\*\.emerg[\s]+:omusrmsg:\*[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_mail_info" check="all" check_existence="all_exist" version="1" comment="7"><ind:object object_ref="obj_rsyslog_mail_info" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_mail_info" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*mail\.info[\s]+-/var/log/mail\.info[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_mail_all" check="all" check_existence="all_exist" version="1" comment="8"><ind:object object_ref="obj_rsyslog_mail_all" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_mail_all" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*mail\.\*[\s]+-/var/log/mail[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_crit" check="all" check_existence="all_exist" version="1" comment="9"><ind:object object_ref="obj_rsyslog_crit" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_crit" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*\*\.crit[\s]+/var/log/warn[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_cron" check="all" check_existence="all_exist" version="1" comment="10"><ind:object object_ref="obj_rsyslog_cron" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_cron" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*cron\.\*[\s]+/var/log/cron[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_mail_warn" check="all" check_existence="all_exist" version="1" comment="11"><ind:object object_ref="obj_rsyslog_mail_warn" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_mail_warn" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*mail\.warning[\s]+-/var/log/mail\.warn[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_messages" check="all" check_existence="all_exist" version="1" comment="12"><ind:object object_ref="obj_rsyslog_messages" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_messages" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*\*\.\*;mail\.none;news\.none[\s]+-/var/log/messages[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_local45" check="all" check_existence="all_exist" version="1" comment="13"><ind:object object_ref="obj_rsyslog_local45" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_local45" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*local4,local5\.\*[\s]+-/var/log/localmessages[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test id="test_rsyslog_local01" check="all" check_existence="all_exist" version="1" comment="14"><ind:object object_ref="obj_rsyslog_local01" /></ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_rsyslog_local01" version="1"><ind:filepath>/etc/rsyslog.d/99-cis-custom-logging.conf</ind:filepath><ind:pattern operation="pattern match">^[\s]*local0,local1\.\*[\s]+-/var/log/localmessages[\s]*$</ind:pattern><ind:instance datatype="int">1</ind:instance></ind:textfilecontent54_object>
+</def-group>

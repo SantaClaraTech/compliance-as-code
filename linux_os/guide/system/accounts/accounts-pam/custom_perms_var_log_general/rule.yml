@@ -1,13 +1,17 @@
 documentation_complete: true
-title: 'Verify permissions of general log files (0640)'
-description: 'Set permissions to 0640 for all other log files.'
-rationale: 'System logs should be restricted to 0640 to prevent unauthorized access.'
+
+title: 'Permisos para logs generales del sistema'
+
+description: 'Garantizar permisos en logs estándar del sistema operativo.'
+
+rationale: 'Los logs generales pueden contener volcados de memoria o errores sensibles del kernel.'
+
 severity: medium
+
 template:
-    name: file_permissions
-    vars:
-        filepath: /var/log/
-        file_regex: '.*'
-        recursive: 'true'
-        filemode: '0640'
-        excluded_files: ['^[bw]tmp.*$', '^lastlog.*$', '^[sS]ssd$', '^gdm3?$']
+  name: file_permissions
+  vars:
+    filepath: /var/log/
+    file_regex: ^(messages.*|cron.*|maillog.*|boot\.log.*|spooler.*|dmesg.*|firewalld.*|syslog.*)$
+    allow_stricter_permissions: true
+    filemode: '0640'

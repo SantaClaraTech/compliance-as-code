@@ -1,12 +1,17 @@
 documentation_complete: true
-title: 'Verify permissions of SSSD and GDM log files (0660)'
-description: 'Set permissions to 0660 for SSSD and GDM logs.'
-rationale: 'Specific daemons require 0660 to write correctly to their logs.'
+
+title: 'Permisos para logs de aplicaciones y servicios (Apps)'
+
+description: 'Garantizar permisos adecuados en logs de aplicaciones específicas.'
+
+rationale: 'Los servicios deben tener sus logs protegidos contra lectura no autorizada.'
+
 severity: medium
+
 template:
-    name: file_permissions
-    vars:
-        filepath: /var/log/
-        file_regex: '^([sS]ssd*|gdm3?)$'
-        recursive: 'true'
-        filemode: '0660'
+  name: file_permissions
+  vars:
+    filepath: /var/log/
+    file_regex: ^(chrony/.*|cups/.*|httpd/.*|samba/.*|nginx/.*|dnf.*|hawkey.*|tuned/.*|rhsm/.*|qemu-ga/.*)$
+    allow_stricter_permissions: true
+    filemode: '0640'

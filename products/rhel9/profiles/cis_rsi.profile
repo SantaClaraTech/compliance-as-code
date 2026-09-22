@@ -25,8 +25,9 @@ selections:
     #- sshd_use_strong_ciphers
     - custom_sshd_ciphers
     #- harden_sshd_ciphers_openssh_conf_crypto_policy
-    - configure_crypto_policy
-    - var_system_crypto_policy=fips
+    #- configure_crypto_policy
+    - custom_crypto_policy_no_chacha
+    # - var_system_crypto_policy=default
     #- banner_etc_issue_net
     - custom_banner_etc_issue_net
     - file_ownership_sshd_private_key
@@ -76,8 +77,9 @@ selections:
     - var_accounts_tmout=15_min
 
     # Logs y Auditoría
-    - rsyslog_logging_configured
+    #- rsyslog_logging_configured
     - rsyslog_remote_loghost
+    - custom_rsyslog_logging_configured
     #- file_permissions_var_log
     - custom_perms_var_log_login
     - custom_perms_var_log_apps
@@ -86,8 +88,10 @@ selections:
     - file_groupowner_var_log
 
     # Permisos Generales y Directorios Home
-    - no_files_or_dirs_ungroupowned
-    - no_files_or_dirs_unowned_by_user
+    #- no_files_or_dirs_ungroupowned
+    #- no_files_or_dirs_unowned_by_user
+    - custom_no_files_or_dirs_ungroupowned
+    - custom_no_files_or_dirs_unowned
     #- file_ownership_home_directories
     - custom_file_ownership_home_directories
     - custom_file_groupownership_home_directories
