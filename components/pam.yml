@@ -201,5 +201,8 @@ rules:
 - custom_no_files_or_dirs_ungroupowned
 - custom_no_files_or_dirs_unowned
 - custom_crypto_policy_no_chacha
+- custom_accounts_tmout
+- custom_var_log_security_recursive
+- custom_accounts_passwords_pam_tally2_deny_users
 templates:
 - pam_options

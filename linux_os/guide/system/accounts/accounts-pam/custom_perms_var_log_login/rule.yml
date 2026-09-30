@@ -15,3 +15,5 @@ template:
     file_regex: ^(secure.*|btmp.*|wtmp.*|tallylog.*|lastlog.*|audit/.*|sssd/.*)$
     allow_stricter_permissions: true
     filemode: '0600'
+  backends:
+    bash: "off"
