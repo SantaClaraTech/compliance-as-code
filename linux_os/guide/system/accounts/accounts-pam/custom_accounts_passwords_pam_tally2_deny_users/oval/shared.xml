@@ -1,0 +1,29 @@
+<def-group>
+  <definition class="compliance" id="{{{ rule_id }}}" version="1">
+    {{{ oval_metadata("Regular accounts should be configured to deny access after failed attempts") }}}
+    <criteria operator="AND">
+      <criterion test_ref="test_custom_pam_tally2_deny_number" comment="Verify deny number configuration" />
+      <criterion test_ref="test_custom_pam_tally2_account" comment="Verify pam_tally2 in common-account" />
+    </criteria>
+  </definition>
+
+  <!-- 1. Comprobar que existe la directiva deny=X en login -->
+  <ind:textfilecontent54_test id="test_custom_pam_tally2_deny_number" check="all" check_existence="all_exist" version="1" comment="Check deny number">
+    <ind:object object_ref="obj_custom_pam_tally2_deny_number" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_custom_pam_tally2_deny_number" version="1">
+    <ind:filepath>/etc/pam.d/login</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*auth(?:(?!\n)\s)+required(?:(?!\n)\s)+pam_tally2.so(?:(?!\n)\s)+(?:(?:(?:(?!\n)\s)?[^\n]+)?deny=(\d+)(?:(?:\s+\S+)*\s*$))</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- 2. Comprobar el registro en common-account -->
+  <ind:textfilecontent54_test id="test_custom_pam_tally2_account" check="all" check_existence="all_exist" version="1" comment="Check common-account">
+    <ind:object object_ref="obj_custom_pam_tally2_account" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_custom_pam_tally2_account" version="1">
+    <ind:filepath>/etc/pam.d/common-account</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*account(?:(?!\n)\s)+required(?:(?!\n)\s)+pam_tally2.so(\s|$)</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+</def-group>

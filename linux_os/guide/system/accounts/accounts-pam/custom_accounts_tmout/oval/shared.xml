@@ -1,0 +1,59 @@
+<def-group>
+  <definition class="compliance" id="{{{ rule_id }}}" version="1">
+    {{{ oval_metadata("Checks interactive shell timeout is exactly var_accounts_tmout and centralized") }}}
+    <criteria operator="AND">
+      <criterion comment="TMOUT value in timeout.sh is exactly var_accounts_tmout" test_ref="test_exact_tmout_timeout_sh" />
+      <criterion comment="No active TMOUT in /etc/profile" test_ref="test_no_tmout_etc_profile" />
+      <criterion comment="No active TMOUT in /etc/bashrc" test_ref="test_no_tmout_etc_bashrc" />
+      <criterion comment="No active TMOUT in other profile.d scripts" test_ref="test_no_tmout_other_profiled" />
+    </criteria>
+  </definition>
+
+  <!-- 1. Comprobar que en timeout.sh está el valor exacto -->
+  <ind:textfilecontent54_test id="test_exact_tmout_timeout_sh" check="all" check_existence="all_exist" version="1" comment="Exact TMOUT in timeout.sh">
+    <ind:object object_ref="obj_exact_tmout_timeout_sh" />
+    <ind:state state_ref="state_exact_tmout" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_exact_tmout_timeout_sh" version="1">
+    <ind:filepath>/etc/profile.d/timeout.sh</ind:filepath>
+    <ind:pattern operation="pattern match">^[\s]*(?:typeset|declare)[\s]+-xr[\s]+TMOUT=([\d]+).*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+  
+  <ind:textfilecontent54_state id="state_exact_tmout" version="1">
+    <ind:subexpression datatype="int" operation="equals" var_check="all" var_ref="var_accounts_tmout" />
+  </ind:textfilecontent54_state>
+
+  <!-- 2. Asegurar que NO existe TMOUT activo en /etc/profile -->
+  <ind:textfilecontent54_test id="test_no_tmout_etc_profile" check="all" check_existence="none_exist" version="1" comment="No TMOUT in /etc/profile">
+    <ind:object object_ref="obj_no_tmout_etc_profile" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_no_tmout_etc_profile" version="1">
+    <ind:filepath>/etc/profile</ind:filepath>
+    <ind:pattern operation="pattern match">^[^#]*TMOUT.*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- 3. Asegurar que NO existe TMOUT activo en /etc/bashrc -->
+  <ind:textfilecontent54_test id="test_no_tmout_etc_bashrc" check="all" check_existence="none_exist" version="1" comment="No TMOUT in /etc/bashrc">
+    <ind:object object_ref="obj_no_tmout_etc_bashrc" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_no_tmout_etc_bashrc" version="1">
+    <ind:filepath>/etc/bashrc</ind:filepath>
+    <ind:pattern operation="pattern match">^[^#]*TMOUT.*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- 4. Asegurar que NO existe TMOUT activo en otros scripts .sh (excluyendo timeout.sh) -->
+  <ind:textfilecontent54_test id="test_no_tmout_other_profiled" check="all" check_existence="none_exist" version="1" comment="No TMOUT in other .sh">
+    <ind:object object_ref="obj_no_tmout_other_profiled" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_no_tmout_other_profiled" version="1">
+    <ind:path>/etc/profile.d</ind:path>
+    <ind:filename operation="pattern match">^(?!timeout\.sh$).*\.sh$</ind:filename>
+    <ind:pattern operation="pattern match">^[^#]*TMOUT.*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <external_variable comment="external variable for TMOUT" datatype="int" id="var_accounts_tmout" version="1" />
+</def-group>
