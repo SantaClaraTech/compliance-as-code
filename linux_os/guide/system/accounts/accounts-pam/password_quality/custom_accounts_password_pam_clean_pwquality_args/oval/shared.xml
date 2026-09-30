@@ -1,0 +1,20 @@
+<def-group>
+  <definition class="compliance" id="custom_accounts_password_pam_clean_pwquality_args" version="1">
+    {{{ oval_metadata("Check that pwquality args are absent in PAM files") }}}
+    <criteria>
+      <criterion test_ref="test_custom_pwquality_args_pam_absent" comment="Check legacy args absent in PAM files"/>
+    </criteria>
+  </definition>
+
+  <!-- Test: Ausente en archivos PAM -->
+  <ind:textfilecontent54_test check="all" check_existence="none_exist" id="test_custom_pwquality_args_pam_absent" version="1" comment="legacy args absent in PAM">
+    <ind:object object_ref="object_custom_pwquality_args_pam_absent" />
+  </ind:textfilecontent54_test>
+
+  <ind:textfilecontent54_object id="object_custom_pwquality_args_pam_absent" version="1">
+    <ind:filepath operation="pattern match">^/etc/pam\.d/(system-auth|password-auth)$</ind:filepath>
+    <!-- Busca cualquier parámetro de los 5 en la línea del módulo -->
+    <ind:pattern operation="pattern match">^\s*password\s+.*pam_pwquality\.so.*\s+(minclass|dcredit|lcredit|ocredit|ucredit)=</ind:pattern>
+    <ind:instance datatype="int">1</ind:instance>
+  </ind:textfilecontent54_object>
+</def-group>

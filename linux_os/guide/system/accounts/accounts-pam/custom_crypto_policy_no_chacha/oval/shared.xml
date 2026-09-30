@@ -1,0 +1,29 @@
+<def-group>
+  <definition class="compliance" id="{{{ rule_id }}}" version="1">
+    {{{ oval_metadata("Ensure crypto policy is DEFAULT:NO-CHACHA and module exists") }}}
+    <criteria operator="AND">
+      <criterion comment="Check config file is set to DEFAULT:NO-CHACHA" test_ref="test_crypto_config_no_chacha" />
+      <criterion comment="Check NO-CHACHA.pmod file contains correct cipher restriction" test_ref="test_crypto_pmod_no_chacha" />
+    </criteria>
+  </definition>
+
+  <!-- Comprobar que la politica activa es DEFAULT:NO-CHACHA -->
+  <ind:textfilecontent54_test id="test_crypto_config_no_chacha" check="all" check_existence="all_exist" version="1" comment="Check crypto config">
+    <ind:object object_ref="obj_crypto_config_no_chacha" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_crypto_config_no_chacha" version="1">
+    <ind:filepath>/etc/crypto-policies/config</ind:filepath>
+    <ind:pattern operation="pattern match">^DEFAULT:NO-CHACHA$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <!-- Comprobar que el archivo del modulo existe y tiene el contenido exacto -->
+  <ind:textfilecontent54_test id="test_crypto_pmod_no_chacha" check="all" check_existence="all_exist" version="1" comment="Check pmod file">
+    <ind:object object_ref="obj_crypto_pmod_no_chacha" />
+  </ind:textfilecontent54_test>
+  <ind:textfilecontent54_object id="obj_crypto_pmod_no_chacha" version="1">
+    <ind:filepath>/etc/crypto-policies/policies/modules/NO-CHACHA.pmod</ind:filepath>
+    <ind:pattern operation="pattern match">^cipher@ssh\s*=\s*-CHACHA20-POLY1305$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+</def-group>

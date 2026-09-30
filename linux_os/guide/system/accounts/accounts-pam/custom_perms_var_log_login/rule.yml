@@ -1,0 +1,17 @@
+documentation_complete: true
+
+title: 'Permisos estrictos para logs de autenticación (Login/SSSD/Audit)'
+
+description: 'Garantizar permisos estrictos en logs de identidad y acceso.'
+
+rationale: 'Los logs de autenticación contienen información muy sensible de los usuarios.'
+
+severity: medium
+
+template:
+  name: file_permissions
+  vars:
+    filepath: /var/log/
+    file_regex: ^(secure.*|btmp.*|wtmp.*|tallylog.*|lastlog.*|audit/.*|sssd/.*)$
+    allow_stricter_permissions: true
+    filemode: '0600'

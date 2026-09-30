@@ -1,0 +1,27 @@
+documentation_complete: true
+
+title: 'Configure System Cryptography Policy with NO-CHACHA Module'
+
+description: |-
+    To configure the system cryptography policy to use the DEFAULT policy but 
+    excluding CHACHA20-POLY1305, a custom policy module must be created at 
+    <tt>/etc/crypto-policies/policies/modules/NO-CHACHA.pmod</tt>.
+    Then, the policy is applied using:
+    <pre>$ sudo update-crypto-policies --set DEFAULT:NO-CHACHA</pre>
+
+rationale: |-
+    Applying a custom crypto module ensures that weak or unauthorized ciphers 
+    (like CHACHA20) are globally disabled across the OS while maintaining the 
+    robustness of the DEFAULT policy.
+
+severity: high
+
+ocil_clause: 'the NO-CHACHA module is missing or the policy is not applied'
+
+ocil: |-
+    Verify that the policy module exists:
+    <pre>$ cat /etc/crypto-policies/policies/modules/NO-CHACHA.pmod</pre>
+    It should contain <pre>cipher@ssh = -CHACHA20-POLY1305</pre>.
+    Verify the active policy:
+    <pre>$ cat /etc/crypto-policies/config</pre>
+    It should output <pre>DEFAULT:NO-CHACHA</pre>.

@@ -1,0 +1,17 @@
+documentation_complete: true
+
+title: 'Permisos para logs generales del sistema'
+
+description: 'Garantizar permisos en logs estándar del sistema operativo.'
+
+rationale: 'Los logs generales pueden contener volcados de memoria o errores sensibles del kernel.'
+
+severity: medium
+
+template:
+  name: file_permissions
+  vars:
+    filepath: /var/log/
+    file_regex: ^(messages.*|cron.*|maillog.*|boot\.log.*|spooler.*|dmesg.*|firewalld.*|syslog.*)$
+    allow_stricter_permissions: true
+    filemode: '0640'

@@ -1,0 +1,17 @@
+documentation_complete: true
+
+title: 'Permisos para logs de aplicaciones y servicios (Apps)'
+
+description: 'Garantizar permisos adecuados en logs de aplicaciones específicas.'
+
+rationale: 'Los servicios deben tener sus logs protegidos contra lectura no autorizada.'
+
+severity: medium
+
+template:
+  name: file_permissions
+  vars:
+    filepath: /var/log/
+    file_regex: ^(chrony/.*|cups/.*|httpd/.*|samba/.*|nginx/.*|dnf.*|hawkey.*|tuned/.*|rhsm/.*|qemu-ga/.*)$
+    allow_stricter_permissions: true
+    filemode: '0640'
