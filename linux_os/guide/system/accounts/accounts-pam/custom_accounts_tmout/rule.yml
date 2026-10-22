@@ -1,0 +1,26 @@
+documentation_complete: true
+
+title: 'Set Exact Interactive Session Timeout in Profile.d (Custom)'
+
+description: |-
+    Setting the <tt>TMOUT</tt> option ensures that all user sessions will terminate 
+    based on inactivity. This custom rule enforces that TMOUT is set EXACTLY to the 
+    value of <tt>var_accounts_tmout</tt>, and ONLY within <tt>/etc/profile.d/timeout.sh</tt>.
+    Any other occurrences in <tt>/etc/profile</tt>, <tt>/etc/bashrc</tt>, or other 
+    drop-in scripts will be commented out.
+
+rationale: |-
+    Centralizing the TMOUT configuration in a single drop-in file prevents 
+    conflicting timeout definitions across the system and ensures a consistent 
+    inactivity threshold.
+
+severity: medium
+
+ocil_clause: 'the TMOUT value is not exact, is missing from timeout.sh, or is present in other files'
+
+ocil: |-
+    Check the specific drop-in file:
+    <pre>$ cat /etc/profile.d/timeout.sh</pre>
+    It should contain exactly: <pre>typeset -xr TMOUT={{{ xccdf_value("var_accounts_tmout") }}}</pre>
+    Ensure no other files contain active TMOUT definitions:
+    <pre>$ grep -r "^[^#]*TMOUT" /etc/profile /etc/bashrc /etc/profile.d/</pre>

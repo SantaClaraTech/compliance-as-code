@@ -73,7 +73,8 @@ selections:
 
     # Sesiones y Cuentas de Sistema
     - no_shelllogin_for_systemaccounts
-    - accounts_tmout
+    #- accounts_tmouit
+    - custom_accounts_tmout
     - var_accounts_tmout=15_min
 
     # Logs y Auditoría
@@ -84,8 +85,10 @@ selections:
     - custom_perms_var_log_login
     - custom_perms_var_log_apps
     - custom_perms_var_log_general
-    - file_owner_var_log
-    - file_groupowner_var_log
+    #- custom_file_owner_var_log_recursive
+    #- file_groupowner_var_log
+    #- custom_file_groupowner_var_log_recursive
+    - custom_var_log_security_recursive
 
     # Permisos Generales y Directorios Home
     #- no_files_or_dirs_ungroupowned

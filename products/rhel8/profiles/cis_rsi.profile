@@ -99,7 +99,8 @@ selections:
     - var_password_pam_ucredit=1
     - custom_accounts_password_pam_clean_pwquality_args
     - accounts_password_all_shadowed
-    - accounts_tmout
+    #- accounts_tmout
+    - custom_accounts_tmout
     - var_accounts_tmout=15_min
     #- account_password_pam_faillock_password_auth
     #- account_password_pam_faillock_system_auth

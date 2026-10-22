@@ -1,0 +1,22 @@
+documentation_complete: true
+
+title: 'Configure Account Lock for Regular Users via pam_tally2 (Custom)'
+
+description: |-
+    This rule configures the system to lock out regular user accounts after a number of
+    incorrect login attempts using <tt>pam_tally2.so</tt>. It intentionally excludes 
+    the root account for modularity.
+
+rationale: |-
+    By limiting the number of failed logon attempts, the risk of unauthorized system access via
+    user password guessing, also known as brute-forcing, is reduced.
+
+severity: medium
+
+ocil_clause: 'limiting the number of failed logon attempts for regular users is not configured'
+
+ocil: |-
+    To ensure that regular accounts are locked after a defined number of failed password
+    attempts, run the following command:
+    <pre>$ grep pam_tally2.so /etc/pam.d/login</pre>
+    The output should show the <tt>deny</tt> parameter configured.
