@@ -131,12 +131,12 @@ selections:
     - custom_user_dot_files_no_group_other_write
 
     # --- REGLAS CUSTOM (Las que hemos creado desde cero) ---
-    - custom_perms_var_log_login
+    #- custom_perms_var_log_login
     #- custom_perms_var_log_apps
-    - custom_perms_var_log_apps_suse
-    - custom_perms_var_log_general
+    #- custom_perms_var_log_apps_suse
+    #- custom_perms_var_log_general
     #- custom_var_log_security_recursive
-    - custom_var_log_security_recursive_suse
+    #- custom_var_log_security_recursive_suse
     - custom_accounts_tmout
     #- custom_no_files_or_dirs_ungroupowned
     - custom_no_files_or_dirs_ungroupowned_suse
@@ -148,3 +148,4 @@ selections:
     - custom_file_permissions_home_directories_750_suse
     - custom_file_ownership_home_directories_suse
     - custom_sshd_disable_rsa_authentication
+    - Prueba
